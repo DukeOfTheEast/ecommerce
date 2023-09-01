@@ -1,0 +1,156 @@
+.footerline {
+  display: block;
+  width: 100%;
+  height: 0.01rem;
+  background-color: #828282;
+}
+
+.halffooter {
+  display: flex;
+  padding: 60px 100px;
+  /* align-items: center; */
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.footer {
+  background-color: #2b2b29;
+  overflow-x: hidden;
+}
+
+.footerImage {
+  width: 20px;
+  height: 20px;
+}
+
+.footerLogos {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  text-align: center;
+  align-items: flex-start;
+  margin: 50px 0;
+  color: white;
+}
+
+.who {
+  width: 150px;
+  color: white;
+}
+
+.who a {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.support a {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.subscribe {
+  width: 300px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.subscribe p {
+  font-size: 15px;
+  padding: 0 2px;
+}
+
+.subscribe h4 {
+  font-size: 20px;
+}
+
+.subForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btnIN {
+  padding: 10px 40px;
+  border: none;
+  background-color: #b18e72;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.inputSub {
+  padding: 10px 40px;
+  background-color: #2b2b29;
+  border: 1px solid #b18e72;
+  border-radius: 10px;
+}
+
+.inputSub::placeholder {
+  color: #b18e72;
+  font-size: 10px;
+}
+
+.inputSub:focus {
+  outline: none;
+  color: white;
+}
+
+.support {
+  width: 150px;
+  color: white;
+}
+
+.footerUl {
+  list-style-type: none;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.reserve {
+  color: #828282;
+  text-align: center;
+}
+
+.reserve p {
+  padding: 20px 0;
+}
+
+.socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.loop {
+  color: #b18e72;
+}
+
+@media only screen and (max-width: 750px) {
+  /* .halffooter {
+        display: flex;
+        padding: 60px 100px;
+        /* align-items: center; */
+  /* justify-content: space-between; */
+  /* gap: 50px; */
+  /* } */
+
+  .halffooter {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
