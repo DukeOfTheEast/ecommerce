@@ -48,4 +48,9 @@
   .section {
     grid-template-columns: 1fr;
   }
+
+  .productBtn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
