@@ -1,90 +1,106 @@
 /* eslint-disable react/jsx-key */
 import { useState, useEffect } from "react";
 import classes from "../components/Products.module.css";
-import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true;
+  const [category, setCategory] = useState("");
+
+  const navigate = useNavigate();
+
+  const viewItem = () => {
+    navigate("/product");
+  };
+
+  // const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const getProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        ` ${
+          category === ""
+            ? "https://dummyjson.com/products"
+            : `https://dummyjson.com/products/category/${category}`
+        }`
+      );
+      const data = await response.json();
+      setData(data);
+      setLoading(false);
+      console.log(data, "response");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getCategories = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("https://dummyjson.com/products/categories");
+      const data = await response.json();
+      setCategories(data);
+      setLoading(false);
+      console.log(data, "response");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
-        setLoading(false);
-      }
-
-      return () => {
-        componentMounted = false;
-      };
-    };
-
     getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
+  useEffect(() => {
+    getCategories();
   }, []);
-
+  console.log(categories, "filter");
   const Loading = () => {
     return (
       <div>
-        <div>
-          <Skeleton height={350} />
-        </div>
-        <div>
-          <Skeleton height={350} />
-        </div>
-        <div>
-          <Skeleton height={350} />
-        </div>
-        <div>
-          <Skeleton height={350} />
+        <div className={classes.center}>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
+          <div className={classes.wave}></div>
         </div>
       </div>
     );
   };
 
-  const filterProduct = (cat) => {
-    const updatedList = data.filter((x) => x.category === cat);
-    setFilter(updatedList);
-  };
-
-  const navigate = useNavigate();
-  const prod = () => {
-    navigate(`/products/${product.id}`);
-  };
-
   const ShowProducts = () => {
     return (
       <div>
-        <div className={classes.productBtn}>
-          <button onClick={() => setFilter(data)}>All</button>
-          <button onClick={() => filterProduct("men's clothing")}>
-            Men`s Clothing
-          </button>
-          <button onClick={() => filterProduct("jewelery")}>Jewelries</button>
-          <button onClick={() => filterProduct("women's clothing")}>
-            Women`s `clothes
-          </button>
+        <div className={classes.productBtn} style={{ overflowX: "scroll" }}>
+          <button onClick={() => setCategory("")}>All</button>
+          {categories?.map((item, idx) => (
+            <button onClick={() => setCategory(item)} key={idx}>
+              {item}
+            </button>
+          ))}
         </div>
         <section className={classes.section}>
-          {filter.map((product) => {
+          {data?.products?.map((product) => {
             return (
-              <div>
+              <div key={product?.id}>
                 <div className={classes.productCards}>
-                  <div className={classes.productCard} key={product.id}>
+                  <div className={classes.productCard}>
                     <img
-                      src={product.image}
+                      src={product?.images[0] || ""}
                       alt=""
                       className={classes.cardImage}
                     />
                     <div>
-                      <p>{product.title}</p>
-                      <p>${product.price}</p>
-                      <button className={classes.buybtn} onClick={prod}>
+                      <p>{product?.title}</p>
+                      <p>${product?.price}</p>
+                      <button className={classes.buybtn} onClick={viewItem}>
                         Buy now
                       </button>
                     </div>
@@ -100,7 +116,19 @@ const Products = () => {
 
   return (
     <div className={classes.products}>
-      <h1>Latest Products</h1>
+      <div className="latest">
+        <h1>Latest Products</h1>
+        <div>
+          <input
+            type="text"
+            placeholder="Type items"
+            value={""}
+            // onChange={updateFilterValue}
+          />
+          <button>Search</button>
+        </div>
+      </div>
+
       <div className={classes.productsMain}>
         {loading ? <Loading /> : <ShowProducts />}
       </div>

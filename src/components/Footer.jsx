@@ -63,7 +63,7 @@ function Footer() {
               placeholder="Enter email address"
               className={classes.inputSub}
             />
-            <button className={classes.btnIN}>I'm IN</button>
+            <button className={classes.btnIN}>I`m IN</button>
           </form>
         </div>
       </div>
