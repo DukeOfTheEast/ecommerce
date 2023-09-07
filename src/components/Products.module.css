@@ -175,4 +175,8 @@
   .center {
     margin: 0 10px;
   }
+
+  .prodSearch {
+    width: 150px;
+  }
 }
