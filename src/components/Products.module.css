@@ -118,5 +118,6 @@
 
   .productBtn {
     overflow-x: "scroll";
+    display: flex;
   }
 }
