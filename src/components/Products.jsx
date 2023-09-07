@@ -1,18 +1,22 @@
 /* eslint-disable react/jsx-key */
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import classes from "../components/Products.module.css";
 import { useNavigate } from "react-router-dom";
+import ProductContext from "../contexts/product-context";
 
 const Products = () => {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const { updateState } = useContext(ProductContext);
 
   const navigate = useNavigate();
 
-  const viewItem = () => {
+  const handleclick = (product) => {
     navigate("/product");
+    updateState(product);
   };
 
   // const [filteredProducts, setFilteredProducts] = useState([]);
@@ -35,6 +39,22 @@ const Products = () => {
       console.log(error);
     }
   };
+
+  const searchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://dummyjson.com/products/search?q=${search}`
+      );
+      const data = await response.json();
+      setData(data);
+      setLoading(false);
+      console.log(data, "response");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getCategories = async () => {
     setLoading(true);
     try {
@@ -55,6 +75,11 @@ const Products = () => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  function handleRefresh() {
+    setSearch("");
+    getProducts();
+  }
   console.log(categories, "filter");
   const Loading = () => {
     return (
@@ -81,11 +106,16 @@ const Products = () => {
         <div className={classes.productBtn} style={{ overflowX: "scroll" }}>
           <button onClick={() => setCategory("")}>All</button>
           {categories?.map((item, idx) => (
-            <button onClick={() => setCategory(item)} key={idx}>
+            <button
+              className={classes.btnCat}
+              onClick={() => setCategory(item)}
+              key={idx}
+            >
               {item}
             </button>
           ))}
         </div>
+
         <section className={classes.section}>
           {data?.products?.map((product) => {
             return (
@@ -100,7 +130,10 @@ const Products = () => {
                     <div>
                       <p>{product?.title}</p>
                       <p>${product?.price}</p>
-                      <button className={classes.buybtn} onClick={viewItem}>
+                      <button
+                        className={classes.buybtn}
+                        onClick={() => handleclick(product)}
+                      >
                         Buy now
                       </button>
                     </div>
@@ -116,16 +149,19 @@ const Products = () => {
 
   return (
     <div className={classes.products}>
-      <div className="latest">
+      <div className={classes.latest}>
         <h1>Latest Products</h1>
-        <div>
+        <div className={classes.latestInput}>
           <input
+            className={classes.prodSearch}
             type="text"
             placeholder="Type items"
-            value={""}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
             // onChange={updateFilterValue}
           />
-          <button>Search</button>
+          <button onClick={() => searchProducts()}>Search</button>
+          <button onClick={handleRefresh}>Refresh</button>
         </div>
       </div>
 
@@ -136,4 +172,5 @@ const Products = () => {
   );
 };
 
+export const UserContext = createContext();
 export default Products;

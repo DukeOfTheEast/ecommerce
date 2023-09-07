@@ -6,14 +6,17 @@ import { Routes, Route } from "react-router-dom";
 // import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import ProductOne from "./components/ProductOne";
+import { ProductContextProvider } from "./contexts/product-context";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/product" element={<ProductOne />} />
-      </Routes>
+      <ProductContextProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<ProductOne />} />
+        </Routes>
+      </ProductContextProvider>
     </>
   );
 }

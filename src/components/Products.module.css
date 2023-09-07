@@ -2,6 +2,25 @@
   margin: 30px 40px;
 }
 
+.latestInput {
+  margin: 20px 0;
+}
+
+.latest button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid purple;
+  border-radius: 10px;
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+}
+
+.latest button:hover {
+  opacity: 0.8;
+  scale: 1.05;
+}
+
 .productBtn {
   display: flex;
   gap: 10px;
@@ -16,19 +35,23 @@
 }
 
 .productBtn button:hover {
-  background-color: #333;
+  opacity: 0.8;
+  scale: 1.05;
   color: #fff;
 }
 
 .productCard {
-  box-shadow: 2px 2px 2px 2px #333;
+  /* box-shadow: 2px 2px 2px 2px #333; */
   padding: 20px;
   border-radius: 5px;
+  border: 1px solid purple;
 }
 
 .cardImage {
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit: contain;
 }
 
 .section {
@@ -38,10 +61,37 @@
   margin: 30px 0;
 }
 
+.btnCat {
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  background: purple;
+  color: white;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.prodSearch {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 10px;
+  width: 300px;
+  border: 1px solid purple;
+}
+
 .buybtn {
   padding: 15px;
   cursor: pointer;
   border-radius: 10px;
+  width: 100%;
+  background: purple;
+  color: white;
+  border: none;
+}
+.buybtn:hover {
+  opacity: 0.8;
+  scale: 1.05;
 }
 
 .center {
@@ -56,7 +106,7 @@
 .wave {
   width: 5px;
   height: 100px;
-  background: linear-gradient(45deg, cyan, #fff);
+  background: linear-gradient(45deg, purple, #fff);
   margin: 10px;
   animation: wave 1s linear infinite;
   border-radius: 20px;

@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 80px;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 1px solid purple;
 }
 
 .navlink {
