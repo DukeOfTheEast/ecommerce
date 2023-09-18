@@ -16,7 +16,7 @@ function Footer() {
           </div> */}
         </div>
         <div className={classes.who}>
-          <h4>Who we are</h4>
+          <h4>Who we are.</h4>
           <ul className={classes.footerUl}>
             <li key={1}>
               <a href="/">About us</a>
