@@ -80,7 +80,7 @@ const Products = () => {
     setSearch("");
     getProducts();
   }
-  console.log(categories, "filter");
+  // console.log(categories, "filter");
   const Loading = () => {
     return (
       <div>
