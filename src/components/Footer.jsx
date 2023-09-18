@@ -5,7 +5,7 @@ function Footer() {
     <div className={classes.footer}>
       <div className={classes.halffooter}>
         <div className={classes.footerLogos}>
-          <h1>abloke</h1>
+          <h1>abloke.</h1>
           {/* <img src={Logo} alt="" /> */}
           {/* <div className={classes.socials}>
             <img src={Twiiter} alt="" className={classes.footerImage} />
