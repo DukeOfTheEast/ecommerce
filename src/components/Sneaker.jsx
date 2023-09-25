@@ -1,4 +1,4 @@
-import Sneaks from "../images/sneaker.png";
+import Sneaks from "../images/sneaker-removebg-preview.png";
 import classes from "../components/Sneaker.module.css";
 
 const Sneaker = () => {

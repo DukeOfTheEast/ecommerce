@@ -20,6 +20,6 @@
 @media only screen and (max-width: 750px) {
   .sneaker {
     flex-direction: column;
-    margin: 0 10px;
+    margin: 20px 10px;
   }
 }
